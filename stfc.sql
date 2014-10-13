@@ -1030,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `portal_news` (
 CREATE TABLE IF NOT EXISTS `portal_poll` (
   `id` tinyint(3) unsigned NOT NULL auto_increment,
   `date` int(10) unsigned NOT NULL default '0',
-  `question` varchar(100) NOT NULL default '',
+  `question` varchar(256) NOT NULL default '',
   `choice_1` varchar(100) NOT NULL default '',
   `choice_2` varchar(100) NOT NULL default '',
   `choice_3` varchar(100) NOT NULL default '',
