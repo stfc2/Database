@@ -1,4 +1,4 @@
-Database
-========
+Star Trek Frontline Combat
+==========================
 
-Database
+In this repository is stored the structure of the SQL database used by the web browser game.
