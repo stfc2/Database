@@ -1258,6 +1258,7 @@ CREATE TABLE IF NOT EXISTS `ships` (
   `ship_repair` int(11) NOT NULL default '0',
   `ship_scrap` int(11) NOT NULL default '0',
   `ship_name` varchar(50) NOT NULL default '',
+  `ship_ncc` varchar(20) NOT NULL default '',
   `last_refit_time` int(10) unsigned NOT NULL default '0',
   `next_refit` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ship_id`),
