@@ -972,6 +972,38 @@ CREATE TABLE IF NOT EXISTS `planets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `planet_details`
+--
+
+CREATE TABLE IF NOT EXISTS `planet_details` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `planet_id` smallint(8) unsigned NOT NULL default '0',
+  `planet_type` char(1) default NULL,
+  `system_id` smallint(5) unsigned NOT NULL default '0',
+  `user_id` mediumint(8) unsigned NOT NULL default '0',
+  `alliance_id` smallint(5) unsigned NOT NULL default '0',
+  `source_uid` mediumint(8) unsigned NOT NULL default '0',
+  `source_aid` smallint(5) unsigned NOT NULL default '0',
+  `timestamp` int(10) unsigned NOT NULL default '0',
+  `log_code` smallint(5) unsigned NOT NULL default '0',
+  `ship_name` varchar(50) NOT NULL default '',
+  `survey_1` tinyint(1) unsigned NOT NULL default '0',
+  `survey_2` tinyint(1) unsigned NOT NULL default '0',
+  `survey_3` tinyint(1) unsigned NOT NULL default '0',
+  `defeat_uid` mediumint(8) unsigned NOT NULL default '0',
+  `defeat_aid` smallint(5) unsigned NOT NULL default '0',
+  PRIMARY KEY (`id`), 
+  KEY `Events` (`planet_id`,`log_code`)
+) ENGINE=MyISAM default CHARSET=latin1 AUTO_INCREMENT=1 COMMENT='Historical chronology of the planet';
+
+--
+-- Dumping data for table `planets`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `portal_news`
 --
 
