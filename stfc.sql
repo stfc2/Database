@@ -853,6 +853,7 @@ CREATE TABLE IF NOT EXISTS `planets` (
   `planet_current_x` float unsigned NOT NULL default '0',
   `planet_current_y` float unsigned NOT NULL default '0',
   `planet_points` smallint(3) unsigned NOT NULL default '0',
+  `planet_available_points` smallint(3) unsigned NOT NULL default '0',
   `planet_thumb` varchar(32) NOT NULL default '',
   `planet_next_attack` int(10) unsigned NOT NULL default '0',
   `planet_attack_ships` int(11) NOT NULL default '0',
