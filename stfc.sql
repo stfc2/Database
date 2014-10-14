@@ -414,6 +414,10 @@ CREATE TABLE IF NOT EXISTS `config` (
   `shipwreck_id` int(11) NOT NULL default '0',
   `new_register` int(11) NOT NULL default '0',
   `future_ship` int(10) unsigned NOT NULL default '0' COMMENT='Template id of Prometheus ship',
+  `settler_tmp_1` int(10) unsigned NOT NULL default '0',
+  `settler_tmp_2` int(10) unsigned NOT NULL default '0',
+  `settler_tmp_3` int(10) unsigned NOT NULL default '0',
+  `settler_tmp_4` int(10) unsigned NOT NULL default '0',  
   PRIMARY KEY  (`config_set_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -1055,6 +1059,9 @@ CREATE TABLE IF NOT EXISTS `planets` (
   `planet_altname` varchar(25) NOT NULL default '',
   `planet_surrender` int(10) default '0',
   `npc_last_action` int(10) unsigned NOT NULL default '0' COMMENT='Tick of last BOT action performed',
+  `best_mood` smallint(5) NOT NULL default '0',
+  `best_mood_user` mediumint(8) unsigned NOT NULL default '0',
+  `best_mood_planet` smallint(5) unsigned default NULL,  
   PRIMARY KEY  (`planet_id`),
   KEY `planet_owner` (`planet_owner`),
   KEY `planet_name` (`planet_name`)
@@ -1367,6 +1374,65 @@ CREATE TABLE IF NOT EXISTS `schulden_table` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settlers_events`
+--
+
+CREATE TABLE IF NOT EXISTS `settlers_events` (
+  `planet_id` smallint(5) unsigned NOT NULL default '0',
+  `user_id` mediumint(8) unsigned NOT NULL default '0',
+  `event_code` smallint(5) unsigned NOT NULL default '0',
+  `timestamp` int(10) unsigned NOT NULL default '0',
+  `tick` int(10) unsigned NOT NULL default '0',
+  `awayteamship_id` int(10) unsigned NOT NULL default '0',
+  `awayteam_startlevel` float unsigned NOT NULL default '0',
+  `unit_1` smallint(5) unsigned NOT NULL default '0',
+  `unit_2` smallint(5) unsigned NOT NULL default '0',
+  `unit_3` smallint(5) unsigned NOT NULL default '0',
+  `unit_4` smallint(5) unsigned NOT NULL default '0',
+  `awayteam_alive` tinyint(2) unsigned NOT NULL default '0',
+  `event_status` tinyint(2) unsigned NOT NULL default '0',
+  `event_result` tinyint(2) unsigned NOT NULL default '0',
+  `count_ok` smallint(5) unsigned NOT NULL default '0',
+  `count_crit_ok` smallint(5) unsigned NOT NULL default '0',
+  `count_ko` smallint(5) unsigned NOT NULL default '0',
+  `count_crit_ko` smallint(5) unsigned NOT NULL default '0',
+  UNIQUE KEY `planet_events` (`timestamp`,`planet_id`,`user_id`)
+) ENGINE=MyISAM default CHARSET=latin1;
+
+--
+-- Dumping data for table `settlers_events`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settlers_relations`
+--
+
+CREATE TABLE IF NOT EXISTS `settlers_relations` (
+  `planet_id` smallint(5) unsigned NOT NULL,
+  `race_id` tinyint(3) unsigned default NULL,
+  `alliance_id` smallint(5) unsigned default NULL,
+  `user_id` mediumint(8) unsigned default NULL,
+  `timestamp` int(10) unsigned NOT NULL default '0',
+  `log_code` smallint(5) unsigned NOT NULL default '0',
+  `mood_modifier` tinyint(3) NOT NULL default '0',
+  UNIQUE KEY `Alliance` (`planet_id`,`alliance_id`,`timestamp`,`log_code`),
+  UNIQUE KEY `Player` (`planet_id`,`user_id`,`log_code`),
+  KEY `race_mood` (`race_id`,`planet_id`,`mood_modifier`),
+  KEY `alliance_mood` (`alliance_id`,`planet_id`,`mood_modifier`),
+  KEY `user_mood` (`user_id`,`planet_id`,`mood_modifier`)
+) ENGINE=MyISAM default CHARSET=latin1;
+
+--
+-- Dumping data for table `settlers_relations`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ships`
 --
 
@@ -1377,6 +1443,8 @@ CREATE TABLE IF NOT EXISTS `ships` (
   `user_id` mediumint(8) unsigned NOT NULL default '0',
   `template_id` int(10) unsigned NOT NULL default '0',
   `experience` int(10) unsigned NOT NULL default '0',
+  `awayteam` float unsigned NOT NULL default '1',
+  `awayteamplanet_id` mediumint(8) unsigned NOT NULL default '0',
   `hitpoints` int(10) unsigned NOT NULL default '0',
   `construction_time` int(10) unsigned NOT NULL default '0',
   `unit_1` smallint(5) unsigned NOT NULL default '0',
@@ -1977,6 +2045,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `notepad_width` int(11) default '0',
   `notepad_cols` int(11) default '0',
   `skin_farbe` varchar(7) default NULL,
+  `user_charted` smallint(5) unsigned NOT NULL default '0',
+  `user_first_contact` smallint(5) unsigned NOT NULL default '0',
+  `user_settler_made` smallint(5) unsigned NOT NULL default '0',
+  `user_settler_best` smallint(5) unsigned NOT NULL default '0',
+  `user_tform_planets` smallint(5) unsigned NOT NULL default '0', 
   PRIMARY KEY  (`user_id`),
   KEY `user_alliance` (`user_alliance`),
   KEY `sitting_query` (`user_active`,`user_auth_level`,`user_sitting_id1`,`user_sitting_id2`,`user_sitting_id3`,`user_sitting_id4`,`user_sitting_id5`),
