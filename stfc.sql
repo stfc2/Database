@@ -1765,6 +1765,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_registration_time` int(10) unsigned NOT NULL default '0',
   `user_registration_ip` varchar(15) NOT NULL default '',
   `user_attack_protection` int(10) unsigned NOT NULL default '0',
+  `user_max_colo` tinyint(4) NOT NULL default '0' COMMENT '0 = Nessun limite',
   `user_alliance` smallint(5) unsigned NOT NULL default '0',
   `user_alliance_rights1` tinyint(4) NOT NULL default '0',
   `user_alliance_rights2` tinyint(4) NOT NULL default '0',
