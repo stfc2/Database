@@ -1628,6 +1628,24 @@ CREATE TABLE IF NOT EXISTS `starsystems` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `starsystems_details`
+--
+
+CREATE TABLE IF NOT EXISTS `starsystems_details` (
+  `system_id` smallint(5) unsigned NOT NULL,
+  `user_id` mediumint(8) unsigned default NULL,
+  `alliance_id` smallint(5) unsigned default NULL,
+  `timestamp` int(10) unsigned NOT NULL default '0'
+) ENGINE=MyISAM default CHARSET=latin1;
+
+--
+-- Dumping data for table `starsystems_details`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `starsystems_slots`
 --
 
