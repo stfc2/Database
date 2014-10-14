@@ -1227,7 +1227,8 @@ CREATE TABLE IF NOT EXISTS `scheduler_instbuild` (
   `installation_type` tinyint(2) unsigned NOT NULL default '0',
   `planet_id` smallint(5) unsigned NOT NULL default '0',
   `build_start` int(10) unsigned NOT NULL default '0',
-  `build_finish` int(10) unsigned NOT NULL default '0'
+  `build_finish` int(10) unsigned NOT NULL default '0',
+  KEY `planet_id` (`planet_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1246,7 +1247,8 @@ CREATE TABLE IF NOT EXISTS `scheduler_research` (
   `research_finish` int(10) unsigned NOT NULL default '0',
   `research_id` int(10) unsigned NOT NULL default '0',
   `planet_id` smallint(5) unsigned NOT NULL default '0',
-  `player_id` mediumint(8) unsigned NOT NULL default '0'
+  `player_id` mediumint(8) unsigned NOT NULL default '0',
+  KEY `planet_id` (`planet_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1795,7 +1797,9 @@ CREATE TABLE IF NOT EXISTS `starsystems_details` (
   `system_id` smallint(5) unsigned NOT NULL,
   `user_id` mediumint(8) unsigned default NULL,
   `alliance_id` smallint(5) unsigned default NULL,
-  `timestamp` int(10) unsigned NOT NULL default '0'
+  `timestamp` int(10) unsigned NOT NULL default '0',
+  UNIQUE KEY `alliance` (`alliance_id`,`system_id`),
+  UNIQUE KEY `user` (`user_id`,`system_id`)
 ) ENGINE=MyISAM default CHARSET=latin1;
 
 --
@@ -2143,12 +2147,13 @@ CREATE TABLE IF NOT EXISTS `user_logs` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_sitter_iplog` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL default '0',
   `sitter_id` int(11) NOT NULL default '0',
   `ip` varchar(32) NOT NULL default '',
-  `time` int(11) NOT NULL default '0'
-) ENGINE=MyISAM default CHARSET=latin1 COMMENT='Tabella IP sitter';
+  `time` int(11) NOT NULL default '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM default CHARSET=latin1 AUTO_INCREMENT=1 COMMENT='Tabella IP sitter';
 
 --
 -- Dumping data for table `user_sitter_iplog`
