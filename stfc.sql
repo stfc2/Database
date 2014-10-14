@@ -228,7 +228,8 @@ CREATE TABLE IF NOT EXISTS `alliance_taxes` (
   `mode` int(11) NOT NULL default '0',
   `timestamp` int(11) NOT NULL default '0',
   `reason` char(128) NOT NULL default '',
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY `alliance_id` (`alliance_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -1459,7 +1460,8 @@ CREATE TABLE IF NOT EXISTS `ships` (
   `last_refit_time` int(10) unsigned NOT NULL default '0',
   `next_refit` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`ship_id`),
-  KEY `fleet_id` (`fleet_id`)
+  KEY `fleet_id` (`fleet_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
