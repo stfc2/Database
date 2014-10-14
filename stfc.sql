@@ -1055,7 +1055,6 @@ CREATE TABLE IF NOT EXISTS `planets` (
   `unittrainid_nexttime` int(10) unsigned NOT NULL default '0',
   `unittrain_error` tinyint(1) unsigned NOT NULL default '0',
   `maintenance_fleet` int(10) unsigned NOT NULL default '0',
-  `building_queue` tinyint(3) unsigned NOT NULL default '0',
   `planet_altname` varchar(25) NOT NULL default '',
   `planet_surrender` int(10) default '0',
   `npc_last_action` int(10) unsigned NOT NULL default '0' COMMENT='Tick of last BOT action performed',
@@ -1230,6 +1229,7 @@ CREATE TABLE IF NOT EXISTS `resource_trade` (
 CREATE TABLE IF NOT EXISTS `scheduler_instbuild` (
   `installation_type` tinyint(2) unsigned NOT NULL default '0',
   `planet_id` smallint(5) unsigned NOT NULL default '0',
+  `build_start` int(10) unsigned NOT NULL default '0',
   `build_finish` int(10) unsigned NOT NULL default '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
