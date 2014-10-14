@@ -292,6 +292,85 @@ CREATE TABLE IF NOT EXISTS `bidding_owed` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `borg_bot`
+--
+
+CREATE TABLE IF NOT EXISTS `borg_bot` (
+  `id` int(2) NOT NULL auto_increment,
+  `user_id` mediumint(8) unsigned NOT NULL default '0',
+  `planet_id` smallint(5) unsigned NOT NULL default '0',
+  `unimatrixzero_id` int(10) unsigned NOT NULL default '0',
+  `unimatrixzero_tp` int(10) unsigned NOT NULL default '0',
+  `ship_template1` int(10) unsigned NOT NULL default '0',
+  `ship_template2` int(10) unsigned NOT NULL default '0',
+  `ship_template3` int(10) unsigned NOT NULL default '0',
+  `user_tick` int(10) NOT NULL default '0',
+  `attack_quadrant` tinyint(3) unsigned NOT NULL default '1',
+  `attacked_user1` mediumint(8) unsigned NOT NULL default '0',
+  `attacked_user2` mediumint(8) unsigned NOT NULL default '0',
+  `attacked_user3` mediumint(8) unsigned NOT NULL default '0',
+  `attacked_user4` mediumint(8) unsigned NOT NULL default '0',
+  `last_attacked` mediumint(8) unsigned NOT NULL default '0',
+  `wrath_size` mediumint(8) unsigned NOT NULL default '30' COMMENT='Wrath fleet size',
+  `wrath_num` smallint(5) unsigned NOT NULL default '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM default CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `borg_bot`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borg_npc_target`
+--
+
+CREATE TABLE IF NOT EXISTS `borg_npc_target` (
+  `planet_id` smallint(5) unsigned NOT NULL,
+  `tries` smallint(5) unsigned NOT NULL,
+  `live_attack` smallint(5) unsigned NOT NULL default '0',
+  `priority` smallint(5) NOT NULL,
+  `primary_planet` tinyint(1) unsigned NOT NULL default '0',
+  UNIQUE KEY `planet_id` (`planet_id`)
+) ENGINE=MyISAM default CHARSET=latin1;
+
+--
+-- Dumping data for table `borg_npc_target`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borg_target`
+--
+
+CREATE TABLE IF NOT EXISTS `borg_target` (
+  `user_id` mediumint(8) unsigned NOT NULL default '0',
+  `last_check` int(10) unsigned NOT NULL default '0',
+  `planets_taken` mediumint(8) unsigned NOT NULL default '0' COMMENT='Number of Borg planets occupied by the player',
+  `planets_back` mediumint(8) unsigned NOT NULL default '0' COMMENT='Number of Borg planets reconquered from the player',
+  `battle_win` smallint(5) unsigned NOT NULL default '0',
+  `battle_lost` smallint(5) unsigned NOT NULL default '0',
+  `under_attack` tinyint(3) unsigned NOT NULL default '0' COMMENT='Flag player under attack YES / NO',
+  `threat_level` float NOT NULL default '0',
+  `ship_template1` int(10) unsigned NOT NULL default '0',
+  `ship_template2` int(10) unsigned NOT NULL default '0',
+  `ship_template3` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY (`user_id`), 
+  KEY `last_check` (`last_check`,`threat_level`,`planets_taken`)
+) ENGINE=MyISAM default CHARSET=latin1;
+
+--
+-- Dumping data for table `borg_target`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `click_ids`
 --
 
@@ -334,6 +413,7 @@ CREATE TABLE IF NOT EXISTS `config` (
   `bannerviewstotal` int(11) NOT NULL default '0',
   `shipwreck_id` int(11) NOT NULL default '0',
   `new_register` int(11) NOT NULL default '0',
+  `future_ship` int(10) unsigned NOT NULL default '0' COMMENT='Template id of Prometheus ship',
   PRIMARY KEY  (`config_set_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -722,6 +802,20 @@ CREATE TABLE IF NOT EXISTS `FHB_warteschlange` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `future_human_reward`
+--
+
+CREATE TABLE IF NOT EXISTS `future_human_reward` (
+  `user_id` mediumint(8) unsigned NOT NULL default '0',
+  `rescued_planet_id` smallint(5) unsigned NOT NULL default '0',
+  `timestamp` int(10) unsigned NOT NULL default '0',
+  `target_planet_id` smallint(5) NOT NULL default '0',
+  `sent` tinyint(3) unsigned NOT NULL default '0'
+) ENGINE=MyISAM default CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ip_link`
 --
 
@@ -960,6 +1054,7 @@ CREATE TABLE IF NOT EXISTS `planets` (
   `building_queue` tinyint(3) unsigned NOT NULL default '0',
   `planet_altname` varchar(25) NOT NULL default '',
   `planet_surrender` int(10) default '0',
+  `npc_last_action` int(10) unsigned NOT NULL default '0' COMMENT='Tick of last BOT action performed',
   PRIMARY KEY  (`planet_id`),
   KEY `planet_owner` (`planet_owner`),
   KEY `planet_name` (`planet_name`)
@@ -1407,6 +1502,7 @@ CREATE TABLE IF NOT EXISTS `ship_fleets` (
   `unit_5` int(10) unsigned NOT NULL default '0',
   `unit_6` int(10) unsigned NOT NULL default '0',
   `homebase` int(11) NOT NULL default '0',
+  `npc_last_action` int(10) unsigned NOT NULL default '0' COMMENT='Tick of last BOT action performed',
   PRIMARY KEY  (`fleet_id`),
   KEY `fleet_id` (`fleet_id`),
   KEY `user_id` (`user_id`),
