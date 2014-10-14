@@ -1975,6 +1975,25 @@ CREATE TABLE IF NOT EXISTS `user_logs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_sitter_iplog`
+--
+
+CREATE TABLE IF NOT EXISTS `user_sitter_iplog` (
+`id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL default '0',
+  `sitter_id` int(11) NOT NULL default '0',
+  `ip` varchar(32) NOT NULL default '',
+  `time` int(11) NOT NULL default '0'
+) ENGINE=MyISAM default CHARSET=latin1 COMMENT='Tabella IP sitter';
+
+--
+-- Dumping data for table `user_sitter_iplog`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_templates`
 --
 
