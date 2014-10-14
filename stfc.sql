@@ -1444,7 +1444,7 @@ CREATE TABLE IF NOT EXISTS `ships` (
   `template_id` int(10) unsigned NOT NULL default '0',
   `experience` int(10) unsigned NOT NULL default '0',
   `awayteam` float unsigned NOT NULL default '1',
-  `awayteamplanet_id` mediumint(8) unsigned NOT NULL default '0',
+  `awayteamplanet_id` smallint(5) unsigned NOT NULL default '0',
   `hitpoints` int(10) unsigned NOT NULL default '0',
   `construction_time` int(10) unsigned NOT NULL default '0',
   `unit_1` smallint(5) unsigned NOT NULL default '0',
