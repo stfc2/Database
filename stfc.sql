@@ -228,8 +228,7 @@ CREATE TABLE IF NOT EXISTS `alliance_taxes` (
   `mode` int(11) NOT NULL default '0',
   `timestamp` int(11) NOT NULL default '0',
   `reason` char(128) NOT NULL default '',
-  PRIMARY KEY  (`id`),
-  KEY `id` (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -681,8 +680,7 @@ CREATE TABLE IF NOT EXISTS `FHB_ship_templates` (
   `max_unit_4` smallint(5) unsigned NOT NULL default '0',
   `buildtime` int(10) unsigned NOT NULL default '0',
   `removed` tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
-  KEY `id` (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -874,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `rread` tinyint(1) NOT NULL default '0',
   `time` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `new_messages_check` (`receiver`),
+  KEY `new_messages_check` (`receiver`, `rread`),
   KEY `receiver` (`receiver`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -897,7 +895,6 @@ CREATE TABLE IF NOT EXISTS `message_archiv` (
   `text` text NOT NULL,
   `time` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `new_messages_check` (`receiver`),
   KEY `receiver` (`receiver`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -920,7 +917,7 @@ CREATE TABLE IF NOT EXISTS `message_removed` (
   `text` text NOT NULL,
   `time` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `new_messages_check` (`receiver`)
+  KEY `receiver` (`receiver`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -1536,8 +1533,7 @@ CREATE TABLE IF NOT EXISTS `ship_components` (
   `description` text NOT NULL,
   `dev_info` text NOT NULL,
   PRIMARY KEY  (`id`),
-  KEY `cat_id` (`cat_id`),
-  KEY `cat_id_2` (`cat_id`)
+  KEY `cat_id` (`cat_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -1572,7 +1568,6 @@ CREATE TABLE IF NOT EXISTS `ship_fleets` (
   `homebase` int(11) NOT NULL default '0',
   `npc_last_action` int(10) unsigned NOT NULL default '0' COMMENT 'Tick of last BOT action performed',
   PRIMARY KEY  (`fleet_id`),
-  KEY `fleet_id` (`fleet_id`),
   KEY `user_id` (`user_id`),
   KEY `planet_id` (`planet_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -1641,7 +1636,7 @@ CREATE TABLE IF NOT EXISTS `ship_templates` (
   `buildtime` int(10) unsigned NOT NULL default '0',
   `removed` tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `id` (`id`)
+  KEY `owner` (`owner`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -2169,8 +2164,7 @@ CREATE TABLE IF NOT EXISTS `user_sitter_iplog` (
 CREATE TABLE IF NOT EXISTS `user_templates` (
   `user_id` mediumint(8) unsigned NOT NULL default '0',
   `user_template` longtext NOT NULL,
-  PRIMARY KEY  (`user_id`),
-  KEY `user_id` (`user_id`)
+  PRIMARY KEY  (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
