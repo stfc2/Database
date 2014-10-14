@@ -1616,6 +1616,7 @@ CREATE TABLE IF NOT EXISTS `starsystems` (
   `system_n_planets` tinyint(3) unsigned NOT NULL default '0',
   `system_max_planets` tinyint(3) unsigned NOT NULL default '0',
   `system_closed` tinyint(1) unsigned NOT NULL default '0',
+  `system_owner` mediumint(8) unsigned NOT NULL default '0',
   PRIMARY KEY  (`system_id`),
   KEY `system_sector` (`sector_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
