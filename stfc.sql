@@ -1793,6 +1793,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_last_emergency_call` int(10) unsigned NOT NULL default '0',
   `user_vacation_start` int(10) unsigned NOT NULL default '0',
   `user_vacation_end` int(10) unsigned NOT NULL default '0',
+  `user_last_vacation` int(10) unsigned NOT NULL default '0' COMMENT 'Ultimo periodo di vacanza',
+  `user_last_vacation_duration` int(10) unsigned NOT NULL default '0' COMMENT 'Durata ultimo periodo di vacanza',
   `user_sitting_active` tinyint(1) unsigned NOT NULL default '0',
   `user_sitting_password` varchar(32) NOT NULL default '',
   `user_sitting_o1` tinyint(1) NOT NULL default '0',
