@@ -1625,6 +1625,7 @@ CREATE TABLE IF NOT EXISTS `ship_templates` (
   `value_14` mediumint(8) unsigned NOT NULL default '0',
   `value_15` mediumint(8) unsigned NOT NULL default '0',
   `rof` tinyint(3) unsigned NOT NULL default '1',
+  `rof2` tinyint(3) unsigned NOT NULL default '1',
   `max_torp` smallint(5) unsigned NOT NULL default '0',
   `resource_1` mediumint(8) unsigned NOT NULL default '0',
   `resource_2` mediumint(8) unsigned NOT NULL default '0',
@@ -1706,7 +1707,7 @@ CREATE TABLE IF NOT EXISTS `ship_trade` (
 --
 
 CREATE TABLE IF NOT EXISTS `shoutbox` (
-  `player_name` varchar(32) NOT NULL default '',
+  `user_id` mediumint(8) unsigned NOT NULL default '0',
   `message` varchar(128) NOT NULL default '',
   `timestamp` int(10) unsigned NOT NULL default '0',
   `irc_print` tinyint(4) NOT NULL default '0'
